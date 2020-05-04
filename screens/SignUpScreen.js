@@ -9,19 +9,22 @@ import {
   TextInput,
   StatusBar,
   Dimensions,
+  Alert
 } from 'react-native';
-
 import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
+import {firebaseApp} from '../FirebaseConfig';
 
 const SignUpScreen = ({navigation}) => {
   const [data, setData] = React.useState({
     email: '',
     password: '',
+    confirm:'',
     check_textInputChange: false,
     secureTextEntry: true,
+    errorSignUp:''
   });
 
   const textInputChange = val => {
@@ -45,13 +48,60 @@ const SignUpScreen = ({navigation}) => {
       password: val,
     });
   };
-
+  const handleConfirmChange = val => {
+    setData({
+      ...data,
+      confirm: val,
+    });
+  };
+  
   const updateSecureTextEntry = () => {
     setData({
       ...data,
       secureTextEntry: !data.secureTextEntry,
     });
   };
+
+  // Register Account with email and Password
+  const SignUpAccount = () =>{
+
+    if (data.password !== data.confirm){
+      setData({
+        ...data,
+        errorSignUp: 'The password and confirmation do not match',
+      })
+    }
+    else 
+    {
+      // create User With Email and PasssWord
+
+      firebaseApp.auth().createUserWithEmailAndPassword(data.email, data.password)
+    .then(()=>{
+      // Registration successful --> Alert pop up and go back the login Screen
+      Alert.alert(
+        "Sign Up",
+        "Registration successful",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () =>navigation.goBack()}
+        ],
+        { cancelable: false }
+      );
+    })
+    .catch(function(error) {
+      // Registration failed, update stata errorSignUp
+      let err = error.message;
+      setData({
+        ...data,
+        errorSignUp: err
+      })
+    });
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -108,7 +158,7 @@ const SignUpScreen = ({navigation}) => {
               marginTop: 5,
             })
           }>
-          Cofirm your password
+          Confirm your password
         </Text>
         <View style={styles.action}>
           <Feather name="lock" color="#05375a" size={20} />
@@ -117,7 +167,7 @@ const SignUpScreen = ({navigation}) => {
             secureTextEntry={data.secureTextEntry ? true : false}
             style={styles.textInput2}
             autoCapitalize="none"
-            onChangeText={val => handlePasswordChange(val)}
+            onChangeText={val => handleConfirmChange(val)}
           />
           <TouchableOpacity onPress={updateSecureTextEntry}>
             {data.secureTextEntry ? (
@@ -127,12 +177,24 @@ const SignUpScreen = ({navigation}) => {
             )}
           </TouchableOpacity>
         </View>
+
+        <View style = {{marginTop:15}}> 
+          <Text style = {styles.errorline}> {data.errorSignUp} </Text>
+        </View>
         <View style={styles.button}>
-          <LinearGradient
-            colors={['#08d4c4', '#01ab9d']}
-            style={styles.signIn}>
-            <Text style={(styles.textSign, {color: '#fff'})}>Sign Up</Text>
-          </LinearGradient>
+
+          <TouchableOpacity
+              onPress={SignUpAccount}
+              style = {{width:'100%'}}
+          >
+            <LinearGradient
+                colors={['#08d4c4', '#01ab9d']}
+                style={styles.signIn}>
+                <Text style={(styles.textSign, {color: '#fff'})}>Sign Up</Text>
+              </LinearGradient>
+          </TouchableOpacity>
+
+
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             style={[
@@ -209,7 +271,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    marginTop: 60,
+    marginTop: 30,
   },
   signIn: {
     width: '100%',
@@ -222,4 +284,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  errorline:{
+    fontSize: 16,
+    color:'red'
+  }
 });
