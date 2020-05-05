@@ -6,14 +6,15 @@ import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
-
+import {firebaseApp} from '../FirebaseConfig';
 
 const SignInScreen = ({navigation}) => {
   const [data,setData]= React.useState({
     email:'',
     password:'',
     check_textInputChange:false,
-    secureTextEntry:true
+    secureTextEntry:true,
+    errorSignIn:'',
   });
 
   const textInputChange=(val)=>{
@@ -43,6 +44,25 @@ const SignInScreen = ({navigation}) => {
           ...data,
           secureTextEntry:!data.secureTextEntry
       });
+  }
+
+  const SignInAccount = ()=>{
+    console.log('Pressed Sign In');
+    firebaseApp.auth().signInWithEmailAndPassword(data.email, data.password)
+    .then(()=>{
+      // Sign In Successfully
+      console.log('Sign In Successfully');
+      navigation.navigate('HomeScreen');
+    })
+    .catch(function(error) {
+      //catch error and display in Sign in Screen
+        console.log(error);
+        let err = error.message;
+        setData({
+          ...data,
+          errorSignIn: err
+        })
+    });
   }
   
   return (
@@ -97,13 +117,27 @@ const SignInScreen = ({navigation}) => {
             }
           </TouchableOpacity>
           </View>
+
+          <View style = {{marginTop:15}}>
+            <Text style = {styles.errorLogin}>{data.errorSignIn}</Text>
+          </View>
+
           <View style={styles.button}>
-              <LinearGradient
-                colors={['#08d4c4','#01ab9d']}
-                style={styles.signIn}
+
+              <TouchableOpacity 
+                style ={{width:'100%'}}
+                onPress = {SignInAccount}
               >
-                  <Text style={styles.textSign,{color:'#fff'}}>Sign In</Text>
-              </LinearGradient>
+
+                <LinearGradient
+                  colors={['#08d4c4','#01ab9d']}
+                  style={styles.signIn}
+                >
+                    <Text style={styles.textSign,{color:'#fff'}}>Sign In</Text>
+                </LinearGradient>
+
+              </TouchableOpacity>
+
               <TouchableOpacity
                   onPress={() =>navigation.navigate('SignUpScreen')}
                   style={[styles.signIn,{
@@ -116,6 +150,7 @@ const SignInScreen = ({navigation}) => {
                       color:'#009387'
                 }]}>Sign Up</Text>
               </TouchableOpacity>
+
           </View>
 
        
@@ -174,7 +209,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    marginTop: 60,
+    marginTop: 30,
   },
   signIn: {
     width:'100%',
@@ -186,5 +221,9 @@ const styles = StyleSheet.create({
   textSign: {
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  errorLogin:{
+    fontSize:14,
+    color:'red'
   },
 });
