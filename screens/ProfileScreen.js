@@ -1,12 +1,21 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, Button, StyleSheet,StatusBar,ScrollView, Dimensions} from 'react-native';
+import Backgroundheader from './Backgroundheader';
+import backgroundheader from './Backgroundheader';
+import {Avatar,Title,Caption,Paragraph} from 'react-native-paper';
+import ProfileScreenStack from './ProfileScreenStack'
 
 const ProfileScreen = () => {
   return (
+    <>
+    <StatusBar barStyle="dark-content"/>
     <View style={styles.container}>
-      <Text>ProfileScreen</Text>
-      <Button title="click Here" onPress={() => alert('Button Clicked!')} />
+      <Backgroundheader style={styles.bg}/>
+      <ScrollView style={styles.scrollView}>
+        <ProfileScreenStack/>
+      </ScrollView>
     </View>
+    </>
   );
 };
 export default ProfileScreen;
@@ -14,7 +23,13 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor:'#F0F1F2'
+  },
+  bg:{
+    position:'absolute',
+    width:Dimensions.get("window").width,
+  },
+  scrollView:{
+    flex:1
   },
 });

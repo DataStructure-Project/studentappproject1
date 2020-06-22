@@ -32,7 +32,7 @@ export function DrawerContent(props) {
                   uri:
                     'https://i.pinimg.com/originals/e0/f5/94/e0f594562e27d84b0d0d960bebd3b70f.png',
                 }}
-                size={50}
+                size={50} 
               />
               <View style={{marginLeft: 15, flexDirection: 'column'}}>
                 <Title style={styles.title}>Qoobee </Title>

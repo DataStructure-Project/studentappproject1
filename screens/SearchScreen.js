@@ -1,20 +1,30 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {
+    View,
+    Text,
+    Button,
+    StyleSheet,
+} from 'react-native';
+import SearchScreenStack from './SearchScreenStack'
 
-const SearchScreen = () => {
-  return (
-    <View style={styles.container}>
-      <Text>SearchScreen</Text>
-      <Button title="click Here" onPress={() => alert('Button Clicked!')} />
-    </View>
-  );
+const Search = ({}) => {
+    return (
+        <>
+            <SearchScreenStack/>
+        <View style={styles.post}/>
+            <View style={styles.post}/>
+            <View style={styles.post}/>
+            </>
+    );
 };
-export default SearchScreen;
+export default Search;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    post:{
+        backgroundColor:'#e4e6eb',
+        height:100,
+        margin:16,
+        borderRadius:16
+    }
+
 });
