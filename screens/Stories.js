@@ -54,7 +54,7 @@ export default Stories;
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        paddingTop: 16,
+        paddingTop: 30,
         paddingBottom: 8,
     },
     itemContainer: {

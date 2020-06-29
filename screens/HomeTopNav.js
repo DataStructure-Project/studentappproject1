@@ -6,21 +6,33 @@ import {
     View,
     Image,
     Dimensions,
+    TouchableOpacity,
 } from 'react-native';
-import IconButton from './IconButton';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import Stories from './Stories';
 
 const { width } = Dimensions.get('window');
 
+
 const HomeTopNav = () => {
+    const IconButton = ({ props }) => {
+        return (
+            <TouchableOpacity onPress={() => { }}>
+                <View>
+                    <Icon {...props} />
+                </View>
+            </TouchableOpacity>
+        );
+    };
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.topWrapper}>
                 <View style={styles.topLeftWrapper}>
-                    <IconButton
+                    <Icon
                         style={styles.icons}
                         name="md-camera"
-                        size={28}
+                        size={30}
                         color="black"
                     />
                 </View>
@@ -33,16 +45,15 @@ const HomeTopNav = () => {
 
                 <View style={styles.topRightWrapper}>
 
-                    <IconButton
+                    <Icon
                         style={styles.icons}
                         name="md-send"
-                        size={20}
+                        size={30}
                         color="black"
                     />
                 </View>
             </View>
-
-            <Stories />
+            <Stories/>    
         </SafeAreaView>
     );
 };
@@ -70,13 +81,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     Logo: {
-        width: 100,
-        height: 40,
+        width: 150,
+        height: 60,
         position: 'absolute',
         top: 0,
         left: width / 2 - 50,
     },
     icons: {
         marginHorizontal: 10,
+        paddingTop:20,
     },
 });

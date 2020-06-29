@@ -8,7 +8,7 @@ import {
     Dimensions,
 } from 'react-native';
 
-import IconButton from './IconButton';
+import Icon from 'react-native-vector-icons/Ionicons';
 import colors from './colors';
 
 const { width } = Dimensions.get('window');
@@ -64,7 +64,7 @@ const ContentContainer = () => {
                     <Text style={styles.postUsername}>{item.username}</Text>
                 </View>
 
-                <IconButton
+                <Icon
                     style={styles.postMoreIcon}
                     name="ios-more"
                     size={24}
@@ -77,26 +77,26 @@ const ContentContainer = () => {
             <View style={styles.postBottomWrapper}>
                 <View style={styles.postBottomLeftWrapper}>
                     <View style={styles.postDetailContainers}>
-                        <IconButton
+                        <Icon
                             style={styles.postDetailIcon}
                             name="ios-heart"
-                            size={24}
+                            size={30}
                             color={colors.maroon}
                         />
                         <Text style={styles.postDetailNumbers}>{item.likes}</Text>
                     </View>
                     <View style={styles.postDetailContainers}>
-                        <IconButton
+                        <Icon
                             style={styles.postDetailIcon}
                             name="ios-chatbubbles"
-                            size={24}
+                            size={30}
                             color="black"
                         />
                         <Text style={styles.postDetailNumbers}>{item.likes}</Text>
                     </View>
                 </View>
 
-                <IconButton name="ios-bookmark" size={24} color="black" />
+                <Icon name="ios-bookmark" size={24} color="black" />
             </View>
         </View>
     );

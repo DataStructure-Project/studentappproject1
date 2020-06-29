@@ -10,7 +10,7 @@ import ContentContainer from './ContentContainer';
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <HomeTopNav />
+      <HomeTopNav/>
       <ContentContainer />
     </View>
   );
