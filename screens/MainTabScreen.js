@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -25,11 +25,11 @@ const MainTabScreen = () => (
     }}>
     <Tab.Screen
       name="Home"
-      component={HomeStackScreen}
+      component={HomeScreen}
       options={{
         tabBarLabel: 'Home',
         tabBarColor: '#009387',
-        tabBarIcon: ({color}) => (
+        tabBarIcon: ({ color }) => (
           <Icon name="md-home" color={color} size={26} />
         ),
       }}
@@ -40,30 +40,32 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: 'Updates',
         tabBarColor: '#1f65ff',
-        tabBarIcon: ({color}) => (
+        tabBarIcon: ({ color }) => (
           <Icon name="md-search" color={color} size={26} />
         ),
       }}
     />
-    <Tab.Screen
-      name="Profile"
-      component={ProfileScreen}
-      options={{
-        tabBarLabel: 'Profile',
-        tabBarColor: '#697fad',
-        tabBarIcon: ({color}) => (
-          <Icon name="md-person" color={color} size={26} />
-        ),
-      }}
-    />
+
     <Tab.Screen
       name="TopRating"
       component={TopRatingScreen}
       options={{
         tabBarLabel: 'TopRating',
         tabBarColor: '#d02860',
-        tabBarIcon: ({color}) => (
+        tabBarIcon: ({ color }) => (
           <Icon name="md-medal" color={color} size={26} />
+        ),
+      }}
+    />
+
+    <Tab.Screen
+      name="Profile"
+      component={ProfileScreen}
+      options={{
+        tabBarLabel: 'Profile',
+        tabBarColor: '#697fad',
+        tabBarIcon: ({ color }) => (
+          <Icon name="md-person" color={color} size={26} />
         ),
       }}
     />
@@ -71,7 +73,7 @@ const MainTabScreen = () => (
 );
 export default MainTabScreen;
 
-const HomeStackScreen = ({navigation}) => (
+const HomeStackScreen = ({ navigation }) => (
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
@@ -101,7 +103,7 @@ const HomeStackScreen = ({navigation}) => (
     />
   </HomeStack.Navigator>
 );
-const LoginStackScreen = ({navigation}) => (
+const LoginStackScreen = ({ navigation }) => (
   <LoginStack.Navigator
     screenOptions={{
       headerStyle: {

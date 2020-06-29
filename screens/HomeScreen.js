@@ -2,20 +2,17 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, StatusBar, ScrollView, Dimensions } from 'react-native';
 import Backgroundheader from './Backgroundheader';
 import { Avatar, Title, Caption, Paragraph } from 'react-native-paper';
-import HomeScreenStack from './HomeScreenStack';
+
+import HomeTopNav from './HomeTopNav';
+import ContentContainer from './ContentContainer';
+
 
 const HomeScreen = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <View style={styles.container}>
-        <Backgroundheader style={styles.bg} />
-        <ScrollView style={styles.scrollView}>
-          <HomeScreenStack/>
-         
-        </ScrollView>
-      </View>
-    </>
+    <View style={styles.container}>
+      <HomeTopNav />
+      <ContentContainer />
+    </View>
   );
 };
 export default HomeScreen;

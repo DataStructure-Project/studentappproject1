@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import com.cmcewen.blurview.BlurViewPackage;
 // @react-native-community/masked-view
 import org.reactnative.maskedview.RNCMaskedViewPackage;
+// @react-native-firebase/app
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 // react-native-device-info
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 // react-native-gesture-handler
@@ -76,6 +78,7 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new BlurViewPackage(),
       new RNCMaskedViewPackage(),
+      new ReactNativeFirebaseAppPackage(),
       new RNDeviceInfo(),
       new RNGestureHandlerPackage(),
       new LinearGradientPackage(),
