@@ -10,7 +10,6 @@ const ProfileScreen = () => {
     <>
     <StatusBar barStyle="dark-content"/>
     <View style={styles.container}>
-      <Backgroundheader style={styles.bg}/>
       <ScrollView style={styles.scrollView}>
         <ProfileScreenStack/>
       </ScrollView>

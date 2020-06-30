@@ -4,12 +4,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from './HomeScreen';
 import SearchScreen from './SearchScreen';
 import LoginScreen from './LoginScreen';
-import TopRatingScreen from './TopRatingScreen';
+import ChattingScreen from './ChattingScreen';
 import ProfileScreen from './ProfileScreen';
 //import TopRatingScreen from './TopRatingScreen';
 const HomeStack = createStackNavigator();
@@ -30,7 +30,7 @@ const MainTabScreen = () => (
         tabBarLabel: 'Home',
         tabBarColor: '#009387',
         tabBarIcon: ({ color }) => (
-          <Icon name="md-home" color={color} size={26} />
+          <Icon name="home-account" color={color} size={26} />
         ),
       }}
     />
@@ -38,22 +38,22 @@ const MainTabScreen = () => (
       name="Search"
       component={SearchScreen}
       options={{
-        tabBarLabel: 'Updates',
+        tabBarLabel: 'Search',
         tabBarColor: '#1f65ff',
         tabBarIcon: ({ color }) => (
-          <Icon name="md-search" color={color} size={26} />
+          <Icon name="search-web" color={color} size={26} />
         ),
       }}
     />
 
     <Tab.Screen
-      name="TopRating"
-      component={TopRatingScreen}
+      name="Chatting"
+      component={ChattingScreen}
       options={{
-        tabBarLabel: 'TopRating',
+        tabBarLabel: 'Chatting',
         tabBarColor: '#d02860',
         tabBarIcon: ({ color }) => (
-          <Icon name="md-medal" color={color} size={26} />
+          <Icon name="message-outline" color={color} size={26} />
         ),
       }}
     />
@@ -65,7 +65,7 @@ const MainTabScreen = () => (
         tabBarLabel: 'Profile',
         tabBarColor: '#697fad',
         tabBarIcon: ({ color }) => (
-          <Icon name="md-person" color={color} size={26} />
+          <Icon name="account" color={color} size={26} />
         ),
       }}
     />

@@ -34,7 +34,7 @@ export default Backgroundheader;
 
 const styles=StyleSheet.create({
     linearGradient: {
-        height:(W*3)/7,
+        height:(W*4)/7,
         borderBottomLeftRadius:40,
         borderBottomRightRadius:40,
     },

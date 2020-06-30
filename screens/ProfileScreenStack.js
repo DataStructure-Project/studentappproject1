@@ -1,94 +1,51 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, StatusBar, ScrollView, Dimensions,Image,TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions,Image,TouchableOpacity } from 'react-native';
 import Backgroundheader from './Backgroundheader';
 import backgroundheader from './Backgroundheader';
 import { Avatar, Title, Caption, Paragraph } from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
+import {Button} from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome5'
+import ContentContainerforProfile from './ContentContainerforProfile'
+
 
 const ProfileScreen = () => {
     return (
             <View style={styles.userInfo}>
                 <Avatar.Image
                     source={{
-                        uri: 'https://i.pinimg.com/originals/e0/f5/94/e0f594562e27d84b0d0d960bebd3b70f.png'
+                    uri: 'https://revelogue.com/wp-content/uploads/2020/02/Hinh-anh-cua-emma-watson-e1581709329931.jpg'
                     }}
                     size={150}
-                    style={{ alignSelf: 'center',marginTop:80}}
+                    style={{ alignSelf: 'center',marginTop:40}}
                 />
             <View style={{alignItems:'center',alignSelf:'center' }}>
-                <Title style={styles.title}>Qoobee Trinh</Title>
-                <Caption style={styles.caption}>Newbie</Caption>
-                <Caption style={styles.caption2}>Student at HCMUE</Caption>
+                <Title style={styles.title}>Emma Watson</Title>
             </View>
 
             <View style={styles.button}>
-                    <TouchableOpacity
-                    style={[
-                        styles.follow, 
-                        {
-                             borderColor: '#a4b0be',
-                            borderWidth: 1,
-                            marginTop: 15,
-                        },
-                             ]}>
-                    <Text
-                        style={[
-                            styles.textSign,
-                            {
-                                color: '#009387',
-                            },
-                        ]}>
-                        Follow
-            </Text>
-                    </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={[
-                        styles.follow,
-                        {
-                            borderColor: '#a4b0be',
-                            borderWidth: 1,
-                            marginTop: 15,
-                        },
-                    ]}>
-                    <Text
-                        style={[
-                            styles.textSign,
-                            {
-                                color: '#009387',
-                            },
-                        ]}>
-                        Submissions
-            </Text>
-                </TouchableOpacity>
-                
-            </View>
-
-            <View style={styles.row}>
-                <View style={styles.section}>
-                    <Caption style={styles.caption}>RATINGS</Caption>
-                    <Paragraph style={(styles.paragraph, styles.caption)}>
-                        {' '}
-                  1190{' '}
-                    </Paragraph>
-                </View>
-                <View style={styles.section}>
-                    <Caption style={styles.caption}>FOLLOWERS</Caption>
-                    <Paragraph style={(styles.paragraph, styles.caption)}>
-                        150
-                </Paragraph>
+                <Button
+                    icon={
+                        <Icon
+                            name="facebook-messenger"
+                            size={20}
+                            color="white"
+                        />
+                    }
+                    iconLeft
+                    title=" Texting for Qoobee Trinh"
+                    type="solid"
+                    borderRadius={60}
                     
-                </View>
+                />
+
+                <Button
+                    title=" See more ....."
+                    type="outline"
+                />
                 
             </View>
-            <View style={styles.container1}>
-                <Image
-                    source={{ uri: 'https://codeforces.com/predownloaded/cd/13/cd13c18ccec6b0536e6d9cbfb9c6bf3ad554b55f.png' }}
-                    style={{ width: 400, height: 300 }}
-                />
-            </View>
-            
-
+                    <ContentContainerforProfile/>
             </View>
        
         
@@ -100,10 +57,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F0F1F2'
-    },
-    container1: {
-        flex: 1,
-        
     },
     bg: {
         position: 'absolute',
@@ -120,39 +73,14 @@ const styles = StyleSheet.create({
         marginTop: 3,
         fontWeight: 'bold',
     },
-    caption: {
-        fontSize: 20,
-        lineHeight: 20,
-        
-        alignContent:'center',
-        justifyContent:'center'
-    },
-    caption2    : {
-        fontSize: 20,
-        lineHeight: 30,
-    },
-    row: {
-        marginTop: 20,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    section: {
-        flex:1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        marginRight: 15,
-    },
-    paragraph: {
-        fontWeight: 'bold',
-        marginRight: 3,
-    },
+
     button: {
         alignItems: 'center',
         marginTop: 10,
         flexDirection:'row',
         borderBottomColor:'#ff4757',
-        marginLeft:50,
-        justifyContent:'space-between'
+        marginLeft:10,
+        justifyContent:'space-between',
     },
     follow: {
         width: '40%',

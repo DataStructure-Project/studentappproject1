@@ -38,7 +38,7 @@ const HomeTopNav = () => {
                 </View>
 
                 <Image
-                    source={require('../assets/logo.png')}
+                    source={require('../assets/logon.png')}
                     style={styles.Logo}
                     resizeMode="contain"
                 />
@@ -82,13 +82,13 @@ const styles = StyleSheet.create({
     },
     Logo: {
         width: 150,
-        height: 60,
+        height: 150,
         position: 'absolute',
-        top: 0,
+        top: -45,
         left: width / 2 - 50,
     },
     icons: {
         marginHorizontal: 10,
-        paddingTop:20,
+        paddingTop:10,
     },
 });

@@ -43,7 +43,7 @@ const SearchScreenStack=() => {
           <View style={styles.header_inner}>
             <View>
               <Image
-                source={require('../assets/logo.png')}
+                source={require('../assets/logon.png')}
                 style={{width: 152, height: 30}}
               />
             </View>

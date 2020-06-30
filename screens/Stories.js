@@ -54,7 +54,7 @@ export default Stories;
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        paddingTop: 30,
+        paddingTop: 10,
         paddingBottom: 8,
     },
     itemContainer: {
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         borderRadius: 32.5,
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 8,
+        margin: 10,
     },
     itemImgWrapper: {
         width: 60,

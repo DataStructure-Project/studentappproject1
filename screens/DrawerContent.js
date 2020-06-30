@@ -77,9 +77,9 @@ export function DrawerContent(props) {
             />
             <DrawerItem
               icon={({color, size}) => (
-                <Icon name="medal" color={color} size={size} />
+                <Icon name="message" color={color} size={size} />
               )}
-              label="Top-rating"
+              label="Chatting"
               onPress={() => {
                 props.navigation.navigate('TopRating');
               }}
