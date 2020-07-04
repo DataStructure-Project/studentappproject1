@@ -10,7 +10,7 @@ import ContentContainerforProfile from './ContentContainerforProfile'
 
 
 const ProfileScreen = () => {
-    return (
+    return ( 
             <View style={styles.userInfo}>
                 <Avatar.Image
                     source={{

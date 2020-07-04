@@ -15,16 +15,16 @@ import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
-import {firebaseApp} from '../FirebaseConfig';
+import { firebaseApp } from '../FirebaseConfig';
 
-const SignUpScreen = ({navigation}) => {
+const SignUpScreen = ({ navigation }) => {
   const [data, setData] = React.useState({
     email: '',
     password: '',
-    confirm:'',
+    confirm: '',
     check_textInputChange: false,
     secureTextEntry: true,
-    errorSignUp:''
+    errorSignUp: ''
   });
 
   const textInputChange = val => {
@@ -54,7 +54,7 @@ const SignUpScreen = ({navigation}) => {
       confirm: val,
     });
   };
-  
+
   const updateSecureTextEntry = () => {
     setData({
       ...data,
@@ -63,43 +63,54 @@ const SignUpScreen = ({navigation}) => {
   };
 
   // Register Account with email and Password
-  const SignUpAccount = () =>{
+  const SignUpAccount = async () => {
 
-    if (data.password !== data.confirm){
+    if (data.password !== data.confirm) {
       setData({
         ...data,
         errorSignUp: 'The password and confirmation do not match',
       })
     }
-    else 
-    {
-      // create User With Email and PasssWord
-
-      firebaseApp.auth().createUserWithEmailAndPassword(data.email, data.password)
-    .then(()=>{
-      // Registration successful --> Alert pop up and go back the login Screen
-      Alert.alert(
-        "Sign Up",
-        "Registration successful",
-        [
-          {
-            text: "Cancel",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel"
+    else {
+      try {
+        let response = await fetch('http://localhost:3000/register/createuser', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
           },
-          { text: "OK", onPress: () =>navigation.goBack()}
-        ],
-        { cancelable: false }
-      );
-    })
-    .catch(function(error) {
-      // Registration failed, update stata errorSignUp
-      let err = error.message;
-      setData({
-        ...data,
-        errorSignUp: err
-      })
-    });
+          body: JSON.stringify({
+            email: data.email,
+            password: data.password
+          })
+        });
+        let resJson = await response.json();
+
+        if (resJson.result == 'ok') {
+          Alert.alert(
+            "Sign Up",
+            "Registration successful",
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { text: "OK", onPress: () => navigation.navigate('SignInScreen') }
+            ],
+            { cancelable: false }
+          );
+
+        } else {
+          setData({
+            ...data,
+            errorSignUp: resJson.message
+          })
+        }
+
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
@@ -147,8 +158,8 @@ const SignUpScreen = ({navigation}) => {
             {data.secureTextEntry ? (
               <Feather name="eye-off" color="green" size={20} />
             ) : (
-              <Feather name="eye" color="green" size={20} />
-            )}
+                <Feather name="eye" color="green" size={20} />
+              )}
           </TouchableOpacity>
         </View>
         <Text
@@ -173,25 +184,25 @@ const SignUpScreen = ({navigation}) => {
             {data.secureTextEntry ? (
               <Feather name="eye-off" color="green" size={20} />
             ) : (
-              <Feather name="eye" color="green" size={20} />
-            )}
+                <Feather name="eye" color="green" size={20} />
+              )}
           </TouchableOpacity>
         </View>
 
-        <View style = {{marginTop:15}}> 
-          <Text style = {styles.errorline}> {data.errorSignUp} </Text>
+        <View style={{ marginTop: 15 }}>
+          <Text style={styles.errorline}> {data.errorSignUp} </Text>
         </View>
         <View style={styles.button}>
 
           <TouchableOpacity
-              onPress={SignUpAccount}
-              style = {{width:'100%'}}
+            onPress={SignUpAccount}
+            style={{ width: '100%' }}
           >
             <LinearGradient
-                colors={['#08d4c4', '#01ab9d']}
-                style={styles.signIn}>
-                <Text style={(styles.textSign, {color: '#fff'})}>Sign Up</Text>
-              </LinearGradient>
+              colors={['#08d4c4', '#01ab9d']}
+              style={styles.signIn}>
+              <Text style={(styles.textSign, { color: '#fff' })}>Sign Up</Text>
+            </LinearGradient>
           </TouchableOpacity>
 
 
@@ -284,8 +295,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  errorline:{
+  errorline: {
     fontSize: 16,
-    color:'red'
+    color: 'red'
   }
 });

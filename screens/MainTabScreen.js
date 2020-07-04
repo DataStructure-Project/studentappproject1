@@ -11,12 +11,42 @@ import SearchScreen from './SearchScreen';
 import LoginScreen from './LoginScreen';
 import ChattingScreen from './ChattingScreen';
 import ProfileScreen from './ProfileScreen';
+import ResultSearch from './Search/ResultSearch';
+import InforUser from './Search/InforUser';
+import UpdateInformation from './ProfileUser/UpdateInformation';
 //import TopRatingScreen from './TopRatingScreen';
 const HomeStack = createStackNavigator();
 const LoginStack = createStackNavigator();
 
-const Tab = createBottomTabNavigator();
 
+const SearchStack = createStackNavigator();
+function SearchScreenStack() {
+  return (
+    <SearchStack.Navigator
+      headerMode='none'
+    >
+      <SearchStack.Screen name="SearchScreen" component={SearchScreen} />
+      <SearchStack.Screen name="ResultSearch" component={ResultSearch} />
+      <SearchStack.Screen name="InforUser" component={InforUser} />
+    </SearchStack.Navigator>
+  );
+}
+
+const ProfileStack = createStackNavigator();
+function ProfileScreenStack() {
+  return (
+    <ProfileStack.Navigator
+      headerMode='none'
+    >
+      <ProfileStack.Screen name="ProfileScreen" component={ProfileScreen} />
+      <ProfileStack.Screen name="UpdateInformation" component={UpdateInformation} />
+    
+    </ProfileStack.Navigator>
+  );
+}
+
+
+const Tab = createBottomTabNavigator();
 const MainTabScreen = () => (
   <Tab.Navigator
     initialRouteName="Home"
@@ -24,7 +54,7 @@ const MainTabScreen = () => (
       activeTintColor: '#e91e63',
     }}>
     <Tab.Screen
-      name="Home"
+      name="HomeScreen"
       component={HomeScreen}
       options={{
         tabBarLabel: 'Home',
@@ -36,7 +66,7 @@ const MainTabScreen = () => (
     />
     <Tab.Screen
       name="Search"
-      component={SearchScreen}
+      component={SearchScreenStack}
       options={{
         tabBarLabel: 'Search',
         tabBarColor: '#1f65ff',
@@ -60,7 +90,7 @@ const MainTabScreen = () => (
 
     <Tab.Screen
       name="Profile"
-      component={ProfileScreen}
+      component={ProfileScreenStack}
       options={{
         tabBarLabel: 'Profile',
         tabBarColor: '#697fad',
