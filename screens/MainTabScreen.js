@@ -14,6 +14,9 @@ import ProfileScreen from './ProfileScreen';
 import ResultSearch from './Search/ResultSearch';
 import InforUser from './Search/InforUser';
 import UpdateInformation from './ProfileUser/UpdateInformation';
+import Comment from './Home/Comment';
+import ChatScreen from './ChatScreen';
+import ChatRoom from './Chat/ChatRoom';
 //import TopRatingScreen from './TopRatingScreen';
 const HomeStack = createStackNavigator();
 const LoginStack = createStackNavigator();
@@ -40,10 +43,23 @@ function ProfileScreenStack() {
     >
       <ProfileStack.Screen name="ProfileScreen" component={ProfileScreen} />
       <ProfileStack.Screen name="UpdateInformation" component={UpdateInformation} />
-    
+      <ProfileStack.Screen name="Comment" component={Comment} />
     </ProfileStack.Navigator>
   );
 }
+
+const ChatStack = createStackNavigator();
+function ChatScreenStack() {
+  return (
+    <ChatStack.Navigator
+      headerMode='none'
+    >
+      <ChatStack.Screen name="ChatScreen" component={ChatScreen} />
+      <ChatStack.Screen name="ChatRoom" component={ChatRoom} />
+    </ChatStack.Navigator>
+  );
+}
+
 
 
 const Tab = createBottomTabNavigator();
@@ -55,7 +71,7 @@ const MainTabScreen = () => (
     }}>
     <Tab.Screen
       name="HomeScreen"
-      component={HomeScreen}
+      component={HomeStackScreen}
       options={{
         tabBarLabel: 'Home',
         tabBarColor: '#009387',
@@ -77,8 +93,8 @@ const MainTabScreen = () => (
     />
 
     <Tab.Screen
-      name="Chatting"
-      component={ChattingScreen}
+      name="ChatScreen"
+      component={ChatScreenStack}
       options={{
         tabBarLabel: 'Chatting',
         tabBarColor: '#d02860',
@@ -105,31 +121,15 @@ export default MainTabScreen;
 
 const HomeStackScreen = ({ navigation }) => (
   <HomeStack.Navigator
-    screenOptions={{
-      headerStyle: {
-        backgroundColor: '#009387',
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    }}>
+    headerMode='none'
+  >
     <HomeStack.Screen
       name="Home"
       component={HomeScreen}
-      options={{
-        title: 'Overview',
-        headerLeft: () => (
-          <Icon.Button
-            name="md-menu"
-            size={25}
-            backgroundColor="#009387"
-            onPress={() => {
-              navigation.openDrawer();
-            }}
-          />
-        ),
-      }}
+    />
+    <HomeStack.Screen
+      name="Comment"
+      component={Comment}
     />
   </HomeStack.Navigator>
 );

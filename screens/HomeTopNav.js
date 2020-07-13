@@ -29,12 +29,12 @@ const HomeTopNav = () => {
         <SafeAreaView style={styles.container}>
             <View style={styles.topWrapper}>
                 <View style={styles.topLeftWrapper}>
-                    <Icon
+                    {/* <Icon
                         style={styles.icons}
                         name="md-camera"
                         size={30}
                         color="black"
-                    />
+                    /> */}
                 </View>
 
                 <Image
@@ -45,12 +45,12 @@ const HomeTopNav = () => {
 
                 <View style={styles.topRightWrapper}>
 
-                    <Icon
+                    {/* <Icon
                         style={styles.icons}
                         name="md-send"
                         size={30}
                         color="black"
-                    />
+                    /> */}
                 </View>
             </View>
             <Stories/>    
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         alignSelf: 'stretch',
+        marginBottom:40
     },
     topLeftWrapper: {},
     topRightWrapper: {

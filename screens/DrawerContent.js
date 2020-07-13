@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet,NativeModules} from 'react-native';
 
 import {
   Avatar,
@@ -11,6 +11,7 @@ import {
   Text,
   TouchableRipple,
   Switch,
+  
 } from 'react-native-paper';
 
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
@@ -82,7 +83,7 @@ export function DrawerContent(props) {
               )}
               label="Chatting"
               onPress={() => {
-                props.navigation.navigate('TopRating');
+                props.navigation.navigate('ChatScreen');
               }}
             />
             <DrawerItem
@@ -126,7 +127,8 @@ export function DrawerContent(props) {
           )}
           label="Sign Out"
           onPress={() => {
-            props.navigation.navigate('SignInScreen');
+            // props.navigation.navigate('SignInScreen');
+            NativeModules.DevSettings.reload();
           }}
         />
       </Drawer.Section>

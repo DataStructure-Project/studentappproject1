@@ -80,7 +80,6 @@ const SearchScreen = ({ navigation, route }) => {
         const right = [];
 
         let currentItem;
-        // *** 'i < pivotIndex' => chúng ta sẽ không loop qua 'pivot' nữa
         for (let i = 0; i < pivotIndex; i++) {
             currentItem = arr[i]
 

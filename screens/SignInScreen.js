@@ -62,35 +62,39 @@ const SignInScreen = ({ navigation }) => {
     //http://localhost:3000/register/createuser
     console.log(data.email);
     console.log(data.password);
-    // try {
-    //   let response = await fetch('http://localhost:3000/signin', {
-    //     method: 'POST',
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //       email: data.email,
-    //       password: data.password
-    //     })
-    //   });
+    try {
+      let response = await fetch('http://localhost:3000/signin', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password
+        })
+      });
 
-    //   let resJson = await response.json();
-    //   console.log(resJson); 
-    //   if (resJson.result == 'ok') {
-    //     storageID(resJson.id_user);
-    //     navigation.navigate('HomeDrawer');
-    //   } else {
-    //     setData({
-    //       ...data,
-    //       errorSignIn: resJson.message
-    //     })
-    //   } 
+      let resJson = await response.json();
+      console.log(resJson);
+      if (resJson.result == 'ok') {
+        try {
+          await storageID(resJson.id_user);
+        } catch (error) {
 
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    navigation.navigate('HomeDrawer');
+        }
+        navigation.navigate('HomeDrawer');
+      } else {
+        setData({
+          ...data,
+          errorSignIn: resJson.message
+        })
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+    // navigation.navigate('HomeDrawer');
   }
 
   return (
